@@ -30,51 +30,33 @@
 (defconstant +offset-1024+ 14197795064947621068722070641403218320880622795441933960878474914617582723252296732303717722150864096521202355549365628174669108571814760471015076148029755969804077320157692458563003215304957150157403644460363550505412711285966361610267868082893823963790439336411086884584107735010676915)
 (defconstant +mod-1024+ (ash 1 1024))
 
-(deftype uint32 () '(unsigned-byte 32))
-(deftype uint64 () '(unsigned-byte 64))
-(deftype uint128 () '(unsigned-byte 128))
-(deftype uint256 () '(unsigned-byte 256))
-(deftype uint512 () '(unsigned-byte 512))
-(deftype uint1024 () '(unsigned-byte 1024))
-
-(defun fnv-32a (bytes)
-  (let ((hash +offset-32+))
-    (declare (type uint32 hash))
+(defun fnv-hash (offset prime mod bytes)
+  "Compute FNV hash for given OFFSET, PRIME, MOD, and BYTES."
+  (let ((hash offset))
     (loop for b across bytes do
-    	 (setf hash (mod (* (logxor hash (char-code b)) +prime-32+) +mod-32+)))
+    	 (setf hash (mod (* (logxor hash (char-code b)) prime) mod)))
     hash))
+  
+(defun fnv-32a (bytes)
+  "Compute 32-bit FNV-1a hash."
+  (fnv-hash +offset-32+ +prime-32+ +mod-32+ bytes))
 
 (defun fnv-64a (bytes)
-  (let ((hash +offset-64+))
-    (declare (type uint64 hash))
-    (loop for b across bytes do
-    	 (setf hash (mod (* (logxor hash (char-code b)) +prime-64+) +mod-64+)))
-    hash))
+    "Compute 64-bit FNV-1a hash."
+  (fnv-hash +offset-64+ +prime-64+ +mod-64+ bytes))
 
 (defun fnv-128a (bytes)
-  (let ((hash +offset-128+))
-    (declare (type uint128 hash))
-    (loop for b across bytes do
-    	 (setf hash (mod (* (logxor hash (char-code b)) +prime-128+) +mod-128+)))
-    hash))
+  "Compute 128-bit FNV-1a hash."
+  (fnv-hash +offset-128+ +prime-128+ +mod-128+ bytes))
 
 (defun fnv-256a (bytes)
-  (let ((hash +offset-256+))
-    (declare (type uint256 hash))
-    (loop for b across bytes do
-    	 (setf hash (mod (* (logxor hash (char-code b)) +prime-256+) +mod-256+)))
-    hash))
+  "Compute 256-bit FNV-1a hash."
+  (fnv-hash +offset-256+ +prime-256+ +mod-256+ bytes))
 
 (defun fnv-512a (bytes)
-  (let ((hash +offset-512+))
-    (declare (type uint512 hash))
-    (loop for b across bytes do
-    	 (setf hash (mod (* (logxor hash (char-code b)) +prime-512+) +mod-512+)))
-    hash))
+  "Compute 512-bit FNV-1a hash."
+  (fnv-hash +offset-512+ +prime-512+ +mod-512+ bytes))
 
 (defun fnv-1024a (bytes)
-  (let ((hash +offset-1024+))
-    (declare (type uint1024 hash))
-    (loop for b across bytes do
-    	 (setf hash (mod (* (logxor hash (char-code b)) +prime-1024+) +mod-1024+)))
-    hash))
+  "Compute 1024-bit FNV-1a hash."
+  (fnv-hash +offset-1024+ +prime-1024+ +mod-1024+ bytes))
