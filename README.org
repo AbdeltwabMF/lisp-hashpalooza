@@ -1,0 +1,35 @@
+* Lisp-Hashpalooza 
+
+A diverse array of non-cryptographic hash functions in Common Lisp.
+
+** Development
+
+*** Tools
+
+1. Text editor ([[https://www.gnu.org/software/emacs/][Emacs]])
+2. Common Lisp IDE ([[https://slime.common-lisp.dev/][SLIME]] on top of Emacs)
+3. Compiler/Interpreter ([[http://www.sbcl.org/][SBCL]])
+4. Lisp package manager ([[https://www.quicklisp.org/beta/][Quicklisp]])
+
+Or, you can opt for the fastest solution: [[https://portacle.github.io/][Portacle]], which is portable, cross-platform, and requires no installation.
+Alternatively, you can use VS Code with the ALive extension. It's up to you to figure out how it works.
+
+*** Run the code
+
+Once you have the necessary tools up and running, you can refer to this [[https://lispcookbook.github.io/cl-cookbook/getting-started.html][cookbook]] for general guidance on getting started with Common Lisp.
+
+Load the system by entering the following command in the REPL:
+
+#+BEGIN_SRC lisp
+  (asdf:load-system "lisp-hashpalooza")
+#+END_SRC
+
+Afterwards, evaluate the lisp-hashpalooza/tests/`<file-name>` buffer using the following steps:
+
+1. Press `M-x` to invoke the command menu.
+2. Type `slime-eval-buffer` and press Enter.
+3. Output should be printed to the REPL.
+
+** License
+
+Licensed under the [[LICENSE][GPL-v3]] license.

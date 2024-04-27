@@ -1,8 +1,12 @@
-(defpackage :hash
+(defpackage lisp-hashpalooza/fnv
   (:use :cl)
-  (:export))
-
-(in-package :hash)
+  (:export :fnv-32a
+	   :fnv-64a
+	   :fnv-128a
+	   :fnv-256a
+	   :fnv-512a
+	   :fnv-1024a))
+(in-package :lisp-hashpalooza/fnv)
 
 ;; Source: http://www.isthe.com/chongo/tech/comp/fnv/index.html
 
@@ -34,15 +38,15 @@
   "Compute FNV hash for given OFFSET, PRIME, MOD, and BYTES."
   (let ((hash offset))
     (loop for b across bytes do
-    	 (setf hash (mod (* (logxor hash (char-code b)) prime) mod)))
+      (setf hash (mod (* (logxor hash (char-code b)) prime) mod)))
     hash))
-  
+
 (defun fnv-32a (bytes)
   "Compute 32-bit FNV-1a hash."
   (fnv-hash +offset-32+ +prime-32+ +mod-32+ bytes))
 
 (defun fnv-64a (bytes)
-    "Compute 64-bit FNV-1a hash."
+  "Compute 64-bit FNV-1a hash."
   (fnv-hash +offset-64+ +prime-64+ +mod-64+ bytes))
 
 (defun fnv-128a (bytes)
