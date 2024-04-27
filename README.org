@@ -16,7 +16,7 @@ Alternatively, you can use VS Code with the ALive extension. It's up to you to f
 
 *** Run the code
 
-Once you have the necessary tools up and running, you can refer to this [[https://lispcookbook.github.io/cl-cookbook/getting-started.html][cookbook]] for general guidance on getting started with Common Lisp.
+*Once you have the necessary tools up and running, you can refer to this [[https://lispcookbook.github.io/cl-cookbook/getting-started.html][cookbook]] for general guidance on getting started with Common Lisp.*
 
 Load the system by entering the following command in the REPL:
 
@@ -24,10 +24,10 @@ Load the system by entering the following command in the REPL:
   (asdf:load-system "lisp-hashpalooza")
 #+END_SRC
 
-Afterwards, evaluate the lisp-hashpalooza/tests/`<file-name>` buffer using the following steps:
+Afterward, evaluate the *lisp-hashpalooza/tests/<file-name>* buffer using the following steps:
 
-1. Press `M-x` to invoke the command menu.
-2. Type `slime-eval-buffer` and press Enter.
+1. Press *M-x* to invoke the command menu.
+2. Type *slime-eval-buffer* and press Enter.
 3. Output should be printed to the REPL.
 
 ** License
